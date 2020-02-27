@@ -39,4 +39,15 @@ trans2 = (rad3 + trans + rad2 - 2);
 translate([0,0, trans2])
 color([1,1,1]) sphere(rad3);
 
-//make the hat random based on a boolean
+//hat
+hat_base_rad = rad3 + (rad3/4); 
+translate([0,0, trans2+rad3 - 0.3])
+color([0,0,0])
+cylinder(1, hat_base_rad, hat_base_rad);
+
+
+hat_height = rands(rad3, rad, 1)[0];
+hat_top_rad = hat_base_rad / 2;
+translate([0,0, trans2+rad3 + 1])
+color([0,0,0])
+cylinder(hat_height, hat_top_rad, hat_top_rad);
