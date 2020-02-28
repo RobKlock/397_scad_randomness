@@ -10,6 +10,10 @@ seed = (custom_seed == 0) ? floor(rands(1,9999999,1)[0]) : custom_seed;
 
 show_seed = true;
 
+function scaleRandom (rand, low, high) = ((rand - 0) * (high - low)) / (10 - 0) + low;
+
+random = rands(0, 10, 8, seed);
+
 if (show_seed) {
     labelString=str(floor(seed/1000000)%10, floor(seed/100000)%10, 
                 floor(seed/10000)%10, floor(seed/1000)%10, 
@@ -24,11 +28,11 @@ if (show_seed) {
 }
 
 //Make Frosty the Snowman instead of a regular snowman
-frosty = true;
+frosty = false;
 
-rad = rands(10,20,1,seed)[0];
+rad = scaleRandom(random[0], 10, 20);
 color([1,1,1]) sphere(rad);
-rad2 = rands(rad * .33, rad * .75, 1,seed)[0];
+rad2 = scaleRandom(random[1], rad * 0.33, rad * 0.75);
 
 
 trans = (rad2 + rad - 2);
@@ -36,11 +40,11 @@ translate([0,0, trans])
 color([1,1,1]) sphere(rad2);
 
 //arms 
-armlength = rands(rad2, rad2 * 2, 2,seed)[1];
+armlength = scaleRandom(random[2], rad2, rad2 * 2);
 color([0.6,0.4,0.0])
 hull(){
     
-    arm_angle = rands(trans - rad2,trans + rad2, 2, seed)[0];
+    arm_angle = scaleRandom(random[3], trans - rad2, trans + rad2);
     translate([armlength,0,arm_angle])
     
     color([0.6,0.4,0.0]) sphere(r = rad2 / 10);
@@ -51,14 +55,14 @@ hull(){
 color([0.6,0.4,0.0])
 hull(){
     
-    arm_angle = rands(trans - rad2,trans + rad2, 2, seed)[1];
+    arm_angle = scaleRandom(random[4], trans - rad2, trans + rad2);
     translate([-armlength,0, arm_angle])
     
     sphere(r = rad2 / 10);
     translate([0,0, trans])
     sphere(r = rad2 / 10);
 }
-rad3 = rands(rad2 * .33, rad2 * .75, 2, seed)[1];
+rad3 = scaleRandom(random[5], rad2 * 0.33, rad2 * 0.75);
 trans2 = (rad3 + trans + rad2 - 2);
 translate([0,0, trans2])
 color([1,1,1]) sphere(rad3);
@@ -69,7 +73,7 @@ translate([0,0, trans2+rad3 - 0.7])
 color([0,0,0])
 cylinder(rad3/10, hat_base_rad, hat_base_rad);
 
-hat_height = rands(rad3 / 2, rad, 2, seed)[1];
+hat_height = scaleRandom(random[6], rad3 / 2, rad);
 hat_top_rad = hat_base_rad / 2;
 translate([0,0, trans2 + rad3 - 0.5])
 color([0,0,0])
@@ -112,11 +116,13 @@ if (frosty){
 
 else{
     
+    nose_length = scaleRandom(random[7], rad3 / 3, rad3 * 2);
+    
 color([0.9, 0.5, 0.1]) 
 hull(){
     translate([0, 0, trans2 + rad3 * .25])
     color([0.9, 0.5, 0.1]) sphere(r = eye_rad * .55);
-    translate([0, rad3 + rad3, trans2 + rad3 * .2])
+    translate([0, rad3 + nose_length, trans2 + rad3 * .2])
     color([0.9, 0.5, 0.1]) sphere(r = eye_rad * .55);
 }
 }
