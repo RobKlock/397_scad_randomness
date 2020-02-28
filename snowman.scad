@@ -36,11 +36,11 @@ translate([0,0, trans])
 color([1,1,1]) sphere(rad2);
 
 //arms 
-armlength = rands(10, 20, 1,seed)[0];
+armlength = rands(rad2, rad2 * 2, 1,seed)[0];
 color([0.6,0.4,0.0])
 hull(){
     
-    arm_angle = rands(trans - 10,trans + 10, 1, seed)[0];
+    arm_angle = rands(trans - rad2,trans + rad2, 2, seed)[0];
     translate([armlength,0,arm_angle])
     
     color([0.6,0.4,0.0]) sphere(r = rad2 / 10);
@@ -51,7 +51,7 @@ hull(){
 color([0.6,0.4,0.0])
 hull(){
     
-    arm_angle = rands(trans - 10,trans + 10, 1, seed)[0];
+    arm_angle = rands(trans - rad2,trans + rad2, 2, seed)[1];
     translate([-armlength,0, arm_angle])
     
     sphere(r = rad2 / 10);
