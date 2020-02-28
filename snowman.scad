@@ -24,7 +24,7 @@ hull(){
     color([0.6,0.4,0.0]) sphere(r = 1);
 }
 
-color([0.6,0.4,0.3])
+color([0.6,0.4,0.0])
 hull(){
     
     arm_angle = rands(trans - 10,trans + 10, 1)[0];
@@ -41,13 +41,37 @@ color([1,1,1]) sphere(rad3);
 
 //hat
 hat_base_rad = rad3 + (rad3/4); 
-translate([0,0, trans2+rad3 - 0.3])
+translate([0,0, trans2+rad3 - 0.7])
 color([0,0,0])
-cylinder(1, hat_base_rad, hat_base_rad);
+cylinder(rad3/10, hat_base_rad, hat_base_rad);
 
 
 hat_height = rands(rad3, rad, 1)[0];
 hat_top_rad = hat_base_rad / 2;
-translate([0,0, trans2+rad3 + 1])
+translate([0,0, trans2 + rad3 - 0.5])
 color([0,0,0])
 cylinder(hat_height, hat_top_rad, hat_top_rad);
+
+//eye rad is a reallllly funny param to mess with
+eye_rad = ln(rad3) * .7;
+
+//eyes
+
+translate([rad3 * .33, rad3 - .2*(eye_rad), trans2 + rad3 * .33])
+color([0,0,0])
+sphere(r= eye_rad);
+
+translate([-1 * (rad3 * .33), rad3 - .2*(eye_rad), trans2 + rad3 * .33])
+color([0,0,0])
+sphere(r= eye_rad);
+
+//nose
+color([0.9, 0.5, 0.1]) 
+hull(){
+    translate([0, 0, trans2 + rad3 * .25])
+    color([0.9, 0.5, 0.1]) sphere(r = eye_rad * .55);
+    translate([0, rad3 + rad3, trans2 + rad3 * .2])
+    color([0.9, 0.5, 0.1]) sphere(r = eye_rad * .55);
+}
+
+
