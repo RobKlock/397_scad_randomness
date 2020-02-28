@@ -3,6 +3,9 @@
 
 //Set random variables and transfer values for our snowman body
 
+//Make Frosty the Snowman instead of a regular snowman
+frosty = true;
+
 rad = rands(10,20,1)[0];
 color([1,1,1]) sphere(rad);
 rad2 = rands(rad * .33, rad * .75, 1)[0];
@@ -66,12 +69,36 @@ color([0,0,0])
 sphere(r= eye_rad);
 
 //nose
+
+if (frosty){
+   
+    translate([0, rad3 - 0.2, trans2 + rad3 * .1])
+    color([1, 0, 0]) 
+    sphere(r = eye_rad * .66);
+    
+    color([0.5, 0.3, 0.1])
+    hull(){
+        translate([rad3 / 6 , rad3 / 2, trans2 + rad3 * .25 - (rad3 * .7)])
+        sphere(r = eye_rad * .3);
+        
+        translate([rad3 * .8  , rad3 + rad3, trans2 + rad3 * .2])
+        sphere(r = eye_rad * .3);
+        
+    }
+    translate([rad3 * .8  , rad3 + rad3, trans2 + rad3 * .2])
+    color([0.5, 0.3, 0.1])
+    cylinder(eye_rad * 2, eye_rad, eye_rad, true);
+}
+
+else{
+    
 color([0.9, 0.5, 0.1]) 
 hull(){
     translate([0, 0, trans2 + rad3 * .25])
     color([0.9, 0.5, 0.1]) sphere(r = eye_rad * .55);
     translate([0, rad3 + rad3, trans2 + rad3 * .2])
     color([0.9, 0.5, 0.1]) sphere(r = eye_rad * .55);
+}
 }
 
 
