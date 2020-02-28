@@ -12,7 +12,7 @@ show_seed = true;
 
 function scaleRandom (rand, low, high) = ((rand - 0) * (high - low)) / (10 - 0) + low;
 
-random = rands(0, 10, 7, seed);
+random = rands(0, 10, 8, seed);
 
 if (show_seed) {
     labelString=str(floor(seed/1000000)%10, floor(seed/100000)%10, 
@@ -28,7 +28,7 @@ if (show_seed) {
 }
 
 //Make Frosty the Snowman instead of a regular snowman
-frosty = true;
+frosty = false;
 
 rad = scaleRandom(random[0], 10, 20);
 color([1,1,1]) sphere(rad);
@@ -116,11 +116,13 @@ if (frosty){
 
 else{
     
+    nose_length = scaleRandom(random[7], rad3 / 3, rad3 * 2);
+    
 color([0.9, 0.5, 0.1]) 
 hull(){
     translate([0, 0, trans2 + rad3 * .25])
     color([0.9, 0.5, 0.1]) sphere(r = eye_rad * .55);
-    translate([0, rad3 + rad3, trans2 + rad3 * .2])
+    translate([0, rad3 + nose_length, trans2 + rad3 * .2])
     color([0.9, 0.5, 0.1]) sphere(r = eye_rad * .55);
 }
 }
