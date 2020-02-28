@@ -36,7 +36,7 @@ translate([0,0, trans])
 color([1,1,1]) sphere(rad2);
 
 //arms 
-armlength = rands(rad2, rad2 * 2, 1,seed)[0];
+armlength = rands(rad2, rad2 * 2, 2,seed)[1];
 color([0.6,0.4,0.0])
 hull(){
     
@@ -58,7 +58,7 @@ hull(){
     translate([0,0, trans])
     sphere(r = rad2 / 10);
 }
-rad3 = rands(rad2 * .33, rad2 * .75, 1, seed)[0];
+rad3 = rands(rad2 * .33, rad2 * .75, 2, seed)[1];
 trans2 = (rad3 + trans + rad2 - 2);
 translate([0,0, trans2])
 color([1,1,1]) sphere(rad3);
@@ -69,8 +69,7 @@ translate([0,0, trans2+rad3 - 0.7])
 color([0,0,0])
 cylinder(rad3/10, hat_base_rad, hat_base_rad);
 
-
-hat_height = rands(rad3, rad, 1, seed)[0];
+hat_height = rands(rad3 / 2, rad, 2, seed)[1];
 hat_top_rad = hat_base_rad / 2;
 translate([0,0, trans2 + rad3 - 0.5])
 color([0,0,0])
