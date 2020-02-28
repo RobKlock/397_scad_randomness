@@ -28,7 +28,7 @@ if (show_seed) {
 }
 
 //Make Frosty the Snowman instead of a regular snowman
-frosty = true;
+frosty = false;
 
 rad = scaleRandom(random[0], 10, 20);
 color([1,1,1]) sphere(rad);
